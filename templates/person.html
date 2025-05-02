@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/person.css' %}">
+{% endblock css %}
+
+{% block main %}
+<div class="candidate-profile" style="display:block">
+
+  <!-- Hero Section -->
+  <section class="candidate-hero">
+    <div class="hero-content">
+      <div class="candidate-photo">
+        {% if person.profile_picture %}
+          <img src="{{ person.profile_picture.url }}" alt="صورة المرشح">
+        {% else %}
+          <img src="{% static 'images/default.jpg' %}" alt="صورة المرشح">
+        {% endif %}
+      </div>
+      <div class="candidate-intro">
+        <h1>{{ person.name }} <span>{{ person.last_name }}</span></h1>
+        <h2><span style="color:red; font-weight:600; font-size:1.2rem">المنصب:</span> {{ person.position }}</h2>
+        <div class="candidate-location">
+          <i class="fas fa-map-marker-alt" style="color:red;"></i>
+          <span style=" font-size: 1.2rem; font-weight: 600;">لبنان <span>| البقاع الغربي |</span> خربة قتفار</span>
+        </div>
+        <span style="font-weight:600; font-size:1.2rem"><span style="color:red;">العمر: </span> {{ person.age }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="profile-content">
+
+    <!-- CV Section -->
+    <section class="profile-section cv-section">
+      <h2 class="section-title">
+        <i class="fas fa-file-alt"></i>
+        <span>السيرة الذاتية</span>
+      </h2>
+
+      <div class="cv-download">
+        {% if person.cv_file %}
+        <a href="{{ person.cv_file.url }}" class="download-btn" download>
+          <i class="fas fa-download"></i>
+          تحميل السيرة الذاتية
+        </a>
+        {% endif %}
+      </div>
+
+      <div class="cv-details">
+        <div class="education">
+          <h3><i class="fas fa-graduation-cap"></i> المؤهلات العلمية</h3>
+          <ul>
+            {% for qualification in person.qualifications.all %}
+              <li>{{ qualification.title }} - {{ qualification.institution }} ({{ qualification.year }})</li>
+            {% empty %}
+              <li>لا توجد مؤهلات مسجلة.</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="experience">
+          <h3><i class="fas fa-briefcase"></i> الخبرات العملية</h3>
+          <ul>
+            {% for exp in person.experiences.all %}
+              <li>{{ exp.position }} - {{ exp.organization }} ({{ exp.start_year }}{% if exp.end_year %}-{{ exp.end_year }}{% endif %})</li>
+            {% empty %}
+              <li>لا توجد خبرات مسجلة.</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Election Program -->
+    <section class="profile-section program-section">
+      <h2 class="section-title">
+        <i class="fas fa-bullhorn"></i>
+        <span>البرنامج الانتخابي</span>
+      </h2>
+
+      <div class="program-tabs">
+        <button class="tab-btn active" data-tab="vision">الرؤية</button>
+        <button class="tab-btn" data-tab="goals">الأهداف</button>
+        <button class="tab-btn" data-tab="projects">المشاريع</button>
+      </div>
+
+      <div class="tab-content active" id="vision">
+        <p>{{ person.vision }}</p>
+      </div>
+
+      <div class="tab-content" id="goals">
+        <ul class="goals-list">
+          {% for goal in person.goals.all %}
+            <li><i class="fas fa-check-circle"></i> {{ goal.title }} - {{ goal.description }}</li>
+          {% empty %}
+            <li>لا توجد أهداف.</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="tab-content" id="projects">
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-tree"></i>
+          </div>
+          <div class="project-info">
+            <h4>تطوير الحدائق العامة</h4>
+            <p>إعادة تأهيل 5 حدائق رئيسية وتجهيزها بمرافق عصرية</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="fas fa-trash-alt"></i>
+          </div>
+          <div class="project-info">
+            <h4>النظافة الذكية</h4>
+            <p>تركيب حاويات ذكية ونظام متكامل لإدارة النفايات</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Family Section -->
+  <section class="profile-section family-section">
+    <h2 class="section-title">
+      <i class="fas fa-users"></i>
+      <span>العائلة</span>
+    </h2>
+
+    <div class="family-members">
+      {% for member in person.famMember.all %}
+        <div class="member-card">
+          <div class="member-photo">
+            {% if member.photo %}
+              <img src="{{ member.photo.url }}" alt="{{ member.relation }}">
+            {% else %}
+              <img src="https://www.kindpng.com/picc/m/404-4042814_facebook-no-profile-png-download-default-headshot-transparent.png" alt="{{ member.relation }}">
+            {% endif %}
+          </div>
+          <h4>{{ member.name }} {{ member.last_name }}</h4>
+          <p>{{ member.get_relation_display }} - {{ member.occupation }}</p>
+        </div>
+      {% empty %}
+        <p>لا توجد معلومات عن أفراد الأسرة.</p>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock main %}
+
+{% block js %}
+<script src="{% static 'js/person.js' %}"></script>
+{% endblock %}

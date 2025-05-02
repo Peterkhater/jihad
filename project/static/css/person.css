@@ -1,0 +1,353 @@
+
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --light-color: #f8f9fa;
+  --dark-color: #2c3e50;
+  --text-color: #333;
+  --border-radius: 8px;
+  --box-shadow: 0 7px 25px rgba(0, 0, 0, 0.1);
+} 
+
+
+/* 
+body {
+  font-family: 'Tajawal', sans-serif;
+  color: var(--text-color);
+  background-color: #f5f5f5;
+  line-height: 1.6;
+  direction: rtl;
+} */
+
+.candidate-profile {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Hero Section */
+.candidate-hero {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 40px 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 30px;
+  box-shadow: var(--box-shadow);
+  margin-top: 50px;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.candidate-photo {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.candidate-photo img {
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover; */
+  object-fit: contain;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+
+}
+
+.election-badge {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent-color);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.candidate-intro h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.candidate-intro h1 span {
+  color: var(--accent-color);
+}
+
+.candidate-intro h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.candidate-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+/* Profile Sections */
+.profile-section {
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: var(--box-shadow);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--light-color);
+}
+
+.section-title i {
+  color: var(--secondary-color);
+}
+
+/* CV Section */
+.cv-download {
+  margin-bottom: 25px;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.cv-details > div {
+  margin-bottom: 25px;
+}
+
+.cv-details h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.cv-details ul {
+  list-style: none;
+  padding-right: 20px;
+}
+
+.cv-details li {
+  position: relative;
+  padding: 8px 0;
+  padding-right: 25px;
+  border-bottom: 1px dashed #eee;
+}
+
+.cv-details li:before {
+  content: "•";
+  position: absolute;
+  right: 0;
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  top: 5px;
+}
+
+/* Program Section */
+.program-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #777;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.tab-btn.active:after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--secondary-color);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.goals-list {
+  list-style: none;
+}
+
+.goals-list li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.goals-list i {
+  color: var(--secondary-color);
+}
+
+.project-card {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+  border-right: 3px solid var(--secondary-color);
+}
+
+.project-icon {
+  width: 50px;
+  height: 50px;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.project-info h4 {
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+/* Family Section */
+.family-members {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.member-card {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.member-photo {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--light-color);
+}
+
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member-card h4 {
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.member-card p {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .candidate-photo {
+    margin-bottom: 20px;
+  }
+  
+  .program-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .family-members {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .candidate-intro h1 {
+    font-size: 2rem;
+  }
+  
+  .candidate-intro h2 {
+    font-size: 1.2rem;
+  }
+}
