@@ -1,15 +1,17 @@
 from django.shortcuts import render
-from .models import Project, Category, Person
+from .models import Project, Category, Person, Gallery
 from django.shortcuts import get_object_or_404
 
 def main(request):
     projects = Project.objects.select_related('category').all()
     categories = Category.objects.all()
     persons = Person.objects.all()
+    gallery = Gallery.objects.all()
     context = {
         'projects': projects,
         'categories': categories,
-        'persons': persons
+        'persons': persons,
+        'gall': gallery,
     }
     return render(request, 'main.html', context)
 

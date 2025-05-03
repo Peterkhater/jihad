@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" as="style">
     {% block meta %}
 
     {%endblock meta%}
@@ -11,7 +12,9 @@
     <meta name="description" content="{% block meta_description %}الدليل الشامل لمرشحي بلدية خربة قنافار - تعرف على البرامج الانتخابية، المشاريع التنموية، والرؤية المستقبلية لتحسين الخدمات في قنافار{% endblock %}">
     <meta name="keywords" content="{% block meta_keywords %}مرشحين خربة قنافار, انتخابات بلدية قنافار, برنامج انتخابي 2025, مشاريع تنموية قنافار, تحسين خدمات بلدية, مرشحون محليون لبنان{% endblock %}">
     <meta name="author" content="{% block meta_author %}لجنة الانتخابات البلدية - خربة قنافار{% endblock %}">
-    
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
     <!-- Default Open Graph -->
     <meta property="og:title" content="{% block og_title %}الانتخابات البلدية في خربة قنافار 2025{% endblock %}">
     <meta property="og:description" content="{% block og_description %}تعرف على جميع المرشحين وبرامجهم لمجلس بلدية خربة قنافار{% endblock %}">
@@ -30,7 +33,8 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     {% block extra_meta %}{% endblock %}
     {% block css %}{% endblock css %}
 </head>
@@ -38,7 +42,7 @@
     <header id="header">
         <div class="container header-container">
             <div class="logo">
-                <img src="https://via.placeholder.com/50x50" alt="شعار الحملة">
+                <img src="{% static "images/logok.jpg" %}" alt="شعار الحملة">
                 <h1>مشروعنا الانتخابي</h1>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -103,10 +107,13 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 مشروعنا الانتخابي. جميع الحقوق محفوظة. <br><span>Powered By Peter Khater</span></p>
+                <p>&copy; 2025 مشروعنا الانتخابي. جميع الحقوق محفوظة. <br><span> Powered By Peter Khater <i class="fa-solid fa-bolt"></i></span></p>
             </div>
         </div>
     </footer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');

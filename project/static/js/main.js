@@ -118,3 +118,26 @@ filterBtns.forEach(btn => {
         });
     });
 });
+
+
+// // Add slide animation classes when slide changes
+// document.addEventListener('DOMContentLoaded', function() {
+//     var heroCarousel = document.getElementById('heroCarousel');
+    
+//     heroCarousel.addEventListener('slide.bs.carousel', function (event) {
+//         var activeSlide = event.relatedTarget;
+//         var contentElements = activeSlide.querySelectorAll('.carousel-content > *');
+        
+//         // Add animation classes to each element
+//         contentElements.forEach(function(element, index) {
+//             element.classList.remove('animate__animated', 'animate__fadeInDown', 'animate__fadeInUp');
+//             void element.offsetWidth; // Trigger reflow
+            
+//             if(element.tagName === 'H2') {
+//                 element.classList.add('animate__animated', 'animate__fadeInDown');
+//             } else {
+//                 element.classList.add('animate__animated', 'animate__fadeInUp');
+//             }
+//         });
+//     });
+// });

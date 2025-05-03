@@ -1,5 +1,5 @@
 from django.contrib import admin
-from  .models import Category,Project,Person, FamilyMember, EducationalQualification, WorkExperience, Goal
+from  .models import Category,Project,Person, FamilyMember, EducationalQualification, WorkExperience, Goal,Gallery
 
 admin.site.register(Category)
 admin.site.register(Project)
@@ -24,8 +24,5 @@ class GoalInline(admin.TabularInline):
 class PersonAdmin(admin.ModelAdmin):
     list_display = ('name', 'last_name', 'position', 'is_current_candidate')
     inlines = [EducationalQualificationInline, WorkExperienceInline, GoalInline,FamilyMemberInline]
-    # filter_horizontal = ('family_members',)
-
-# @admin.register(FamilyMember)
-# class FamilyMemberAdmin(admin.ModelAdmin):
-#     list_display = ('name', 'last_name', 'relation', 'occupation')
+    
+admin.site.register(Gallery)

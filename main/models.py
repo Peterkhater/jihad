@@ -36,6 +36,16 @@ class Project(models.Model):
     
 
 
+class Gallery(models.Model):
+    
+    title = models.CharField(max_length=200, verbose_name="عنوان المشروع")
+    description = models.TextField(verbose_name="وصف المشروع", null=True, blank=True)
+    image = models.ImageField(upload_to='gallery/', verbose_name="صورة القريه")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.title
 
     
 

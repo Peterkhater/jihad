@@ -5,16 +5,56 @@
 {% endblock css %}
     {% block main %}
     <!-- Hero Section -->
-    <section class="hero" id="home" style='background: url("{% static "images/kanafar.jpg" %}");background-position: center;'>
+    {% comment %} <section class="hero" id="home" style='background: url("{% static "images/kanafar.jpg" %}");background-position: center;'>
         <div class="container hero-content">
             <h2>رؤية جديدة لبلدية أفضل</h2>
             <p>نعمل من أجل تطوير البلدية وتحسين جودة الخدمات المقدمة للمواطنين. مشروعنا الانتخابي يهدف إلى تحقيق التنمية الشاملة والمستدامة في جميع المجالات.</p>
             <a href="#projects" class="btn">اكتشف مشاريعنا</a>
             <a href="#contact" class="btn btn-accent">انضم إلينا</a>
         </div>
+    </section> {% endcomment %}
+    <section id="home">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2000">
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                {% for gall in gall %}
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" 
+                            {% if forloop.first %}class="active" aria-current="true"{% endif %} 
+                            aria-label="Slide {{ forloop.counter }}"></button>
+                {% endfor %}
+            </div>
+            
+            <!-- Slides -->
+            <div class="carousel-inner">
+                {% for gall in gall %}
+                    <div class="carousel-item{% if forloop.first %} active{% endif %}" style="background-image: url('{{ gall.image.url }}');">
+                        <div class="carousel-overlay"></div>
+                        <div class="container h-100 d-flex align-items-center justify-content-center">
+                            <div class="carousel-content text-center text-white">
+                                <h2 class="animate__animated animate__fadeInDown">{{ gall.title }}</h2>
+                                <p class="animate__animated animate__fadeInUp">{{ gall.description }}</p>
+                                <div class="hero-buttons">
+                                    <a href="#projects" class="btn btn-primary animate__animated animate__fadeInUp">اكتشف مشاريعنا</a>
+                                    <a href="#contact" class="btn btn-accent animate__animated animate__fadeInUp">انضم إلينا</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </section>
-
-    <!-- About Section -->
+    
     <section class="section" id="about">
         <div class="container">
             <div class="section-title">
@@ -87,20 +127,22 @@
         <div class="projects-grid">
             {% for project in projects %}
             
-            <div class="project-card" data-category="{{ project.category.slug }}">
+            <div class="project-card" data-category="{{ project.category.slug }}" style="border-radius:15px;">
+                <a href="{% url 'project_detail' project.id %}" style="text-decoration:none; margin:0; width:100% ">
                 <div class="project-image">
                     <img src="{{ project.image.url }}" alt="{{ project.title }}">
                 </div>
                 <div class="project-content">
                     <h3>{{ project.title }}</h3>
-                    {% comment %} <p>{{ project.description }}</p> {% endcomment %}
-                    <p>{{ project.description|truncatewords:30 }}</p>
                     {% if project.category %}
                     <div class="project-category">
                         <i class="fas {{ project.category.icon }}"></i>
                         <span style="background-color:rgb(208, 212, 216); border-radius: 10px; padding:5px 10px 5px 10px; ">{{ project.category.name }}</span>
                     </div>
                     {% endif %}
+                    {% comment %} <p>{{ project.description }}</p> {% endcomment %}
+                    <p>{{ project.description|truncatewords:30 }}</p>
+                    
                     <span class="project-status status-{{ project.status }}">
                         {% if project.status == 'planned' %}مخطط له
                         {% elif project.status == 'inprogress' %}قيد التنفيذ
@@ -109,15 +151,16 @@
                     </span>
 
                 </div>
-                <a href="{% url 'project_detail' project.id %}" style="text-decoration:none; margin:0; width:100%">
-                    <button style="width:100%" class="btn">المزيد...</button>
-                </a>
+                {% comment %} <a href="{% url 'project_detail' project.id %}" style="text-decoration:none; margin:0; width:100% "> {% endcomment %}
+                    <button style="width:100% " class="btn">المزيد...</button>
+                {% comment %} </a> {% endcomment %}
 
                 {% if user.is_authenticated and user.is_superuser %}
                 <a href="{% url 'admin:main_project_change' project.id %}" style="text-decoration:none; margin-top:5px; width:100%">
                     <button class="btn btn-accent"style="width:100%" >admin<button>
                 </a>
                 {%endif%}
+            </a>
             </div>
         
             {% endfor %}
@@ -130,55 +173,28 @@
     <section class="section testimonials" id="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>آراء المواطنين</h2>
+                <h2>البرامج الانتخابيه</h2>
             </div>
             <div class="testimonials-slider">
                 <!-- Testimonial 1 -->
+                {% for person in persons %}
                 <div class="testimonial active">
-                    <p class="testimonial-text">"أشكر الفريق على جهودهم في تطوير حديقة الحيوان، أصبحت مكاناً رائعاً للعائلات والأطفال. نتمنى المزيد من هذه المشاريع التي تخدم المجتمع."</p>
+                    <p class="testimonial-text">{{person.election_program}}</p>
                     <div class="testimonial-author">
                         <div class="author-image">
-                            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="محمد السيد">
+                            <img src="{{person.profile_picture.url}}" alt="محمد السيد">
                         </div>
                         <div class="author-info">
-                            <h4>محمد السيد</h4>
-                            <p>مواطن - حي النزهة</p>
+                            <h4>{{person.name}} {{person.last_name}}</h4>
+                            <p>{{person.phone}}</p>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="testimonial">
-                    <p class="testimonial-text">"تحسين إنارة الشوارع في منطقتنا كان له أثر كبير على سلامتنا وسهولة الحركة ليلاً. نقدّر هذه الجهود ونتمنى استمرارها في كل الأحياء."</p>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1372&q=80" alt="أميرة محمود">
-                        </div>
-                        <div class="author-info">
-                            <h4>أميرة محمود</h4>
-                            <p>مواطنة - حي الأندلس</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="testimonial">
-                    <p class="testimonial-text">"الخدمات الإلكترونية التي قدمتها البلدية وفرت علينا الكثير من الوقت والجهد. الآن يمكننا إنهاء المعاملات من المنزل دون الحاجة للانتظار في الطوابير."</p>
-                    <div class="testimonial-author">
-                        <div class="author-image">
-                            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="علي عبد الرحمن">
-                        </div>
-                        <div class="author-info">
-                            <h4>علي عبد الرحمن</h4>
-                            <p>رجل أعمال</p>
-                        </div>
-                    </div>
-                </div>
-                
+                {%endfor%}                
                 <div class="slider-controls">
-                    <div class="slider-dot active" data-slide="0"></div>
-                    <div class="slider-dot" data-slide="1"></div>
-                    <div class="slider-dot" data-slide="2"></div>
+                    {% for person in persons %}
+                    <div class="slider-dot active" data-slide="{{person.id}}"></div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
