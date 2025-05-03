@@ -4,15 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مشروعنا الانتخابي - رؤية جديدة للبلدية</title>
-    <link rel="stylesheet" href="{%static 'css/base.css'%}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% block meta %}
+
+    {%endblock meta%}
+    <title>{% block title %}المرشحون الانتخابيون لخربة قنافار | البرامج والمشاريع 2025{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}الدليل الشامل لمرشحي بلدية خربة قنافار - تعرف على البرامج الانتخابية، المشاريع التنموية، والرؤية المستقبلية لتحسين الخدمات في قنافار{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}مرشحين خربة قنافار, انتخابات بلدية قنافار, برنامج انتخابي 2025, مشاريع تنموية قنافار, تحسين خدمات بلدية, مرشحون محليون لبنان{% endblock %}">
+    <meta name="author" content="{% block meta_author %}لجنة الانتخابات البلدية - خربة قنافار{% endblock %}">
+    
+    <!-- Default Open Graph -->
+    <meta property="og:title" content="{% block og_title %}الانتخابات البلدية في خربة قنافار 2025{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}تعرف على جميع المرشحين وبرامجهم لمجلس بلدية خربة قنافار{% endblock %}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}https://www.kherbetqanafar-elections.com{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% static 'images/th.jpeg' %}{% endblock %}">
+    <meta property="og:locale" content="ar_LB">
+    <meta property="og:site_name" content="انتخابات خربة قنافار">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock %}">
+    <meta name="twitter:title" content="{% block twitter_title %}الانتخابات البلدية في خربة قنافار 2025{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}تعرف على جميع المرشحين وبرامجهم لمجلس بلدية خربة قنافار{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/th.jpeg' %}{% endblock %}">
+    
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    {% block css %}
-    {% endblock css %}
-
     
+    {% block extra_meta %}{% endblock %}
+    {% block css %}{% endblock css %}
 </head>
 <body>
     <header id="header">

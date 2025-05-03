@@ -1,6 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}مشروع {{ project.title }} | بلدية خربة قنافار{% endblock %}
+
+{% block meta_description %}مشروع {{ project.title }} - {{ project.description|truncatewords:20 }}{% endblock %}
+
+{% block og_title %}مشروع {{ project.title }} في خربة قنافار{% endblock %}
+
+{% block og_description %}{{ project.description|truncatewords:25 }}{% endblock %}
+
+{% block og_image %}{{ project.image.url }}{% endblock %}
+
+{% block extra_meta %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "{{ project.title }}",
+  "description": "{{ project.description|striptags|truncatewords:30 }}",
+  "url": "{{ request.build_absolute_uri }}",
+  "image": "{{ project.image.url }}"
+}
+</script>
+{% endblock %}
+
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/projects.css' %}">
 {% endblock %}

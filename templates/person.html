@@ -1,6 +1,42 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}{{ person.name }} | مرشح بلدية خربة قنافار{% endblock %}
+
+{% block meta_description %}البرنامج الانتخابي للمرشح {{ person.name }} - {{ person.election_program|truncatewords:20 }}{% endblock %}
+
+{% block meta_keywords %}مرشح {{ person.name }} {{ person.last_name }}, انتخابات قنافار, {{ person.position }}, مشاريع {{ person.last_name }}{% endblock %}
+
+{% block og_title %}{{ person.name }} {{ person.last_name }} | مرشح بلدية خربة قنافار{% endblock %}
+
+{% block og_description %}تعرف على مشاريع {{ person.name }} {{ person.last_name }} لتحسين الخدمات في قنافار{% endblock %}
+
+{% block og_image %}{% if person.profile_picture %}{{ person.profile_picture.url }}{% else %}{% static 'images/candidate-default.jpg' %}{% endif %}{% endblock %}
+
+{% block twitter_title %}{{ person.name }} {{ person.last_name }} للانتخابات البلدية{% endblock %}
+
+{% block twitter_description %}برنامج {{ person.name }} {{ person.last_name }} الانتخابي لتحسين قنافار{% endblock %}
+
+{% block extra_meta %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ person.name }} {{ person.last_name }}",
+  "jobTitle": "مرشح بلدية خربة قنافار",
+  "description": "{{ person.election_program|striptags|truncatewords:20 }}",
+  "url": "{{ request.build_absolute_uri }}",
+  "image": "{% if person.profile_picture %}{{ person.profile_picture.url }}{% else %}{% static 'images/th.jpeg' %}{% endif %}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "خربة قنافار",
+    "addressRegion": "البقاع",
+    "addressCountry": "لبنان"
+  }
+}
+</script>
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/person.css' %}">
 {% endblock css %}
