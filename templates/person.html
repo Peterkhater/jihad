@@ -62,6 +62,8 @@
           <span style=" font-size: 1.2rem; font-weight: 600;">لبنان <span>| البقاع الغربي |</span> خربة قتفار</span>
         </div>
         <span style="font-weight:600; font-size:1.2rem"><span style="color:red;">العمر: </span> {{ person.age }}</span>
+        <br>
+        <span style="font-weight:600; font-size:1.2rem"><span style="color:red;"><i class="fa-solid fa-phone"></i> </span> {{ person.phone }}</span>
       </div>
     </div>
   </section>
@@ -186,7 +188,15 @@
       {% endfor %}
     </div>
   </section>
-</div>
+
+  
+  <!-- Family Section -->
+  {% comment %} <section class="profile-section family-section">
+    <h6 class="section-ttle" s>
+      {{person.election_program}}
+    </h6>
+  </section>
+</div> {% endcomment %}
 {% endblock main %}
 
 {% block js %}

@@ -30,17 +30,19 @@
 {% endblock %}
 
 {% block main %}
+<!-- HTML -->
+<a href="/" class="home-button" title="Back to Home">
+    🏠 الرجوع الى الخلف
+  </a>
+
 <div class="project-detail-container" style="margin-top:150px">
     <!-- Main Project Section -->
     <article class="main-project">
         <div class="project-content">
-            <!-- <div class="project-header">
-                <div class="category-badge">{{ project.category.name }}</div>
-            </div> -->
             <div class="project-details" style="background-color:#f5f5f5;">
                 <div class="project-description">
-                    <div  style="display:flex; align-item:center; justify-content:center; width:100%; " >
-                        <h1 class="project-title" >{{ project.title }} <span style="background-color:rgb(220, 220, 220); padding: 3px 10px; border-radius: 20px; font-size: medium; ">{{ project.category.name }}</span></h1>
+                    <div  style="display:flex; align-item:center; justify-content:center; width:100%; padding-top:10px; padding-bottom:10px" >
+                        <h1 class="project-title" style="font-weight: 800;">{{ project.title }} <span style="background-color:rgb(220, 220, 220); padding: 3px 10px; border-radius: 20px; font-size: medium; ">{{ project.category.name }}</span></h1>
                     </div>
                     
                 </div>
@@ -63,7 +65,7 @@
                 </div>
             </div>
             {% comment %} <div class="project-details" style="padding-right:10px;">
-                <div class="project-description">
+                <div class="project-description" style="border-bottom: 1px solid #eee;">
                     <h1 class="project-title">{{ project.title }}</h1>
                     {{ project.description|linebreaks }}
                 </div>

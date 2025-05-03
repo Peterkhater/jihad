@@ -55,7 +55,7 @@
         </div>
     </section>
     
-    <section class="section" id="about">
+    {% comment %} <section class="section" id="about">
         <div class="container">
             <div class="section-title">
                 <h2>عن مشروعنا الانتخابي</h2>
@@ -73,8 +73,52 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> {% endcomment %}
 <!-- Team Section -->
+
+<section class="candidate-profile" style="padding:5px;" dir="rtl">
+    <div class="profile-container">
+      <!-- Candidate Photo with Frame -->
+      <div class="photo-frame">
+        <img src="{% static 'images/kanafar.jpg' %}" alt="المرشح لرئاسة البلدية" class="candidate-photo">
+        <div class="frame-decoration"></div>
+      </div>
+      
+      <!-- Candidate Information -->
+      <div class="profile-content" style="padding:5px;">
+        <h2 class="section-title">من أنا؟</h2>
+        <h1 class="candidate-name">جهاد سمير خاطر</h1>
+        <h3 class="candidate-title">مرشح لرئاسة البلدية</h3>
+        
+        <div class="achievement-badges">
+          <div class="badge">
+            <i class="fas fa-award"></i>
+            <span style="color:black;">25 سنة خبرة إدارية</span>
+          </div>
+          <div class="badge">
+            <i class="fas fa-university"></i>
+            <span  style="color:black;">دكتوراه في الإدارة المحلية</span>
+          </div>
+        </div>
+        
+        <div class="bio-text">
+          <p>ابن هذه المدينة العزيزة، خدموا لأكثر من عقد في تطوير الخدمات البلدية وتحسين حياة المواطنين. التزامي الأول هو خدمة أهالي هذه المنطقة بكل إخلاص.</p>
+          
+          <ul class="vision-list">
+            <li><i class="fas fa-check-circle"></i> رؤية واضحة لمدينة نظيفة ومتطورة</li>
+            <li><i class="fas fa-check-circle"></i> خطة استراتيجية لتحسين البنية التحتية</li>
+            <li><i class="fas fa-check-circle"></i> نهج شفاف في إدارة الشؤون البلدية</li>
+          </ul>
+        </div>
+        
+        <div class="signature">
+          <img src="{% static 'images/signature.png' %}" alt="توقيع المرشح">
+          <p>خادمكم المخلص</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <section class="section" id="team">
     <div class="container">
         <div class="section-title">
@@ -107,6 +151,10 @@
     </div>
 </section>
 
+
+
+
+
 <!-- Projects Section -->
 <section class="section projects" id="projects">
     <div class="container">
@@ -123,7 +171,7 @@
             </button>
             {% endfor %}
         </div>
-        
+    
         <div class="projects-grid">
             {% for project in projects %}
             
