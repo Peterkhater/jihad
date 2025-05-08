@@ -120,12 +120,26 @@
       </h2>
 
       <div class="program-tabs">
-        <button class="tab-btn active" data-tab="vision">الرؤية</button>
+        <button class="tab-btn active" data-tab="projects">المشاريع</button>
+        <button class="tab-btn" data-tab="vision">الرؤية</button>
         <button class="tab-btn" data-tab="goals">الأهداف</button>
-        <button class="tab-btn" data-tab="projects">المشاريع</button>
       </div>
 
-      <div class="tab-content active" id="vision">
+      <div class="tab-content active" id="projects">
+        {% for cat in  person.target_categories.all %}
+        <div class="project-card">
+          <div class="project-icon">
+            <i class="{{cat.icon}}"></i>
+          </div>
+          <div class="project-info">
+            <h4>{{cat.name}}</h4>
+            <p>السعي لتحقيق نقلة نوعية في مجال {{cat.name}} عبر خطط استراتيجية تعزز التنمية المستدامة وترفع جودة الخدمات المقدمة للمواطنين.</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="tab-content " id="vision">
         <p>{{ person.vision }}</p>
       </div>
 
@@ -139,19 +153,7 @@
         </ul>
       </div>
 
-      <div class="tab-content" id="projects">
-        {% for cat in  person.target_categories.all %}
-        <div class="project-card">
-          <div class="project-icon">
-            <i class="{{cat.icon}}"></i>
-          </div>
-          <div class="project-info">
-            <h4>{{cat.name}}</h4>
-            <p>السعي لتحقيق نقلة نوعية في مجال {{cat.name}} عبر خطط استراتيجية تعزز التنمية المستدامة وترفع جودة الخدمات المقدمة للمواطنين.</p>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
+      
     </section>
   </div>
 
