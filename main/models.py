@@ -58,6 +58,12 @@ class Person(models.Model):
     age = models.PositiveIntegerField(verbose_name="العمر")
     phone = models.CharField(blank=True, null=True,verbose_name="رقم الهاتف",default='+961', max_length=100)
     note = models.TextField(verbose_name="ملاحظات", blank=True)
+    target_categories = models.ManyToManyField(
+        Category,
+        verbose_name="الفئات المستهدفة للتحسين",
+        related_name="candidates",
+        blank=True
+    )
     election_program = models.TextField(verbose_name="البرنامج الانتخابي", blank=True)
     is_current_candidate = models.BooleanField(verbose_name="مرشح حاليا", default=True)
     vision = models.TextField(verbose_name="الرؤية", blank=True)
@@ -109,9 +115,7 @@ class FamilyMember(models.Model):
 class EducationalQualification(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='qualifications', verbose_name="المرشح")
     title = models.CharField(max_length=200, verbose_name="المؤهل العلمي")
-    institution = models.CharField(max_length=200, verbose_name="المؤسسة التعليمية")
-    year = models.PositiveIntegerField(verbose_name="سنة الحصول")
-
+    institution = models.CharField(max_length=200, verbose_name="المؤسسة التعليمية", null=True,blank=True)
     class Meta:
         verbose_name = "المؤهل العلمي"
         verbose_name_plural = "المؤهلات العلمية"
@@ -123,8 +127,6 @@ class WorkExperience(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='experiences', verbose_name="المرشح")
     position = models.CharField(max_length=200, verbose_name="المنصب")
     organization = models.CharField(max_length=200, verbose_name="المؤسسة")
-    start_year = models.PositiveIntegerField(verbose_name="سنة البدء")
-    end_year = models.PositiveIntegerField(verbose_name="سنة الانتهاء", null=True, blank=True)
 
     class Meta:
         verbose_name = "الخبرة العملية"
@@ -144,3 +146,23 @@ class Goal(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class MySetting(models.Model):
+   phone = models.CharField( max_length=40,  blank=True, null=True)
+   email = models.EmailField(max_length=254, null=True, blank=True)
+   instagramLink = models.TextField(blank=True, null=True)
+   facebookLink = models.TextField(blank=True, null=True)
+   website_url = models.URLField(max_length=200, blank=True, null=True)
+   address = models.CharField(max_length=255, blank=True, null=True)
+   business_name = models.CharField(max_length=100, blank=True, null=True)
+   logo = models.ImageField(upload_to='setting/', blank=True, null=True)
+   linkedinLink = models.URLField(max_length=200, blank=True, null=True)
+   created_at = models.DateTimeField(auto_now_add=True)
+   updated_at = models.DateTimeField(auto_now=True)
+   description = models.TextField(blank=True, null=True)
+   dev_name = models.CharField(max_length=100, blank=True, null=True)
+   dev_img =  models.ImageField(upload_to='setting/', blank=True, null=True)
+
+   leyha_photo = models.ImageField(upload_to='setting/', blank=True, null=True)
+   leyha_description =models.TextField(blank=True, null=True)

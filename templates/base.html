@@ -42,8 +42,8 @@
     <header id="header">
         <div class="container header-container">
             <div class="logo">
-                <img src="{% static "images/logok.jpg" %}" alt="شعار الحملة">
-                <h1>مشروعنا الانتخابي</h1>
+                <img src="{{setting.logo.url}}" alt="شعار الحملة">
+                {% comment %} <h1>مشروعنا الانتخابي</h1> {% endcomment %}
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
@@ -54,8 +54,14 @@
                     <li><a href="{% url 'main' %}#about">عن المشروع</a></li>
                     <li><a href="{% url 'main' %}#projects">المشاريع</a></li>
                     <li><a href="{% url 'main' %}#team">فريق العمل</a></li>
-                    <li><a href="{% url 'main' %}#testimonials">آراء المواطنين</a></li>
+                    <li onclick="alert('قيد الإنشاء')"><a href="#" class="" style="color: rgb(192, 192, 192);">قاعدة البيانات</a></li>
+                    {% comment %} <li><a href="{% url 'main' %}#testimonials">آراء المواطنين</a></li> {% endcomment %}
                     <li><a href="{% url 'main' %}#contact">اتصل بنا</a></li>
+                    <div class="social-links me-3 bg-primary px-2 py-1 d-flex justify-content-center align-item-center" style="border-radius:10px">
+                        <a href="{{setting.facebookLink}}"><i class="fab fa-facebook-f me-2" style="color:white;"></i></a>
+                        <a href="{{setting.instagramLink}}"><i class="fab fa-instagram" style="color:white;"></i></a>
+                        {% comment %} <a href="#"><i class="fab fa-youtube"></i></a> {% endcomment %}
+                    </div>
                 </ul>
             </nav>
         </div>
@@ -69,13 +75,9 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>عن المشروع</h3>
-                    <p>بيتر جوزيف خاطر هو المطور المسؤول عن هذا الموقع. نسعى من خلال هذا العمل إلى تقديم محتوى واضح وخدمات سهلة التنقل لضمان رضاكم.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
+                    <p>{{setting.description}}</p>
+                    <img src="{{setting.dev_img.url}}" alt="بيتر جوزيف خاطر هو المطور المسؤول عن هذا الموقع." style="width:100px;">
+                    
                 </div>
                 <div class="footer-column">
                     <h3>روابط سريعة</h3>
@@ -84,7 +86,7 @@
                         <li><a href="{% url 'main' %}#about">عن المشروع</a></li>
                         <li><a href="{% url 'main' %}#projects">المشاريع</a></li>
                         <li><a href="{% url 'main' %}#team">فريق العمل</a></li>
-                        <li><a href="{% url 'main' %}#testimonials">آراء المواطنين</a></li>
+                        {% comment %} <li><a href="{% url 'main' %}#testimonials">آراء المواطنين</a></li> {% endcomment %}
                         <li><a href="{% url 'main' %}#contact">اتصل بنا</a></li>
                     </ul>
                 </div>

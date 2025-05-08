@@ -92,7 +92,7 @@
           <h3><i class="fas fa-graduation-cap"></i> المؤهلات العلمية</h3>
           <ul>
             {% for qualification in person.qualifications.all %}
-              <li>{{ qualification.title }} - {{ qualification.institution }} ({{ qualification.year }})</li>
+              <li>{{ qualification.title }} - {{ qualification.institution }} </li>
             {% empty %}
               <li>لا توجد مؤهلات مسجلة.</li>
             {% endfor %}
@@ -103,7 +103,7 @@
           <h3><i class="fas fa-briefcase"></i> الخبرات العملية</h3>
           <ul>
             {% for exp in person.experiences.all %}
-              <li>{{ exp.position }} - {{ exp.organization }} ({{ exp.start_year }}{% if exp.end_year %}-{{ exp.end_year }}{% endif %})</li>
+              <li>{{ exp.position }} - {{ exp.organization }}</li>
             {% empty %}
               <li>لا توجد خبرات مسجلة.</li>
             {% endfor %}
@@ -140,37 +140,29 @@
       </div>
 
       <div class="tab-content" id="projects">
+        {% for cat in  person.target_categories.all %}
         <div class="project-card">
           <div class="project-icon">
-            <i class="fas fa-tree"></i>
+            <i class="{{cat.icon}}"></i>
           </div>
           <div class="project-info">
-            <h4>تطوير الحدائق العامة</h4>
-            <p>إعادة تأهيل 5 حدائق رئيسية وتجهيزها بمرافق عصرية</p>
+            <h4>{{cat.name}}</h4>
+            <p>السعي لتحقيق نقلة نوعية في مجال {{cat.name}} عبر خطط استراتيجية تعزز التنمية المستدامة وترفع جودة الخدمات المقدمة للمواطنين.</p>
           </div>
         </div>
-
-        <div class="project-card">
-          <div class="project-icon">
-            <i class="fas fa-trash-alt"></i>
-          </div>
-          <div class="project-info">
-            <h4>النظافة الذكية</h4>
-            <p>تركيب حاويات ذكية ونظام متكامل لإدارة النفايات</p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </section>
   </div>
 
   <!-- Family Section -->
-  <section class="profile-section family-section">
+  {% comment %} <section class="profile-section family-section">
     <h2 class="section-title">
       <i class="fas fa-users"></i>
       <span>العائلة</span>
-    </h2>
+    </h2> {% endcomment %}
 
-    <div class="family-members">
+    {% comment %} <div class="family-members">
       {% for member in person.famMember.all %}
         <div class="member-card">
           <div class="member-photo">
@@ -187,7 +179,7 @@
         <p>لا توجد معلومات عن أفراد الأسرة.</p>
       {% endfor %}
     </div>
-  </section>
+  </section> {% endcomment %}
 
   
   <!-- Family Section -->

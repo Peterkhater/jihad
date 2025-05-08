@@ -1,3 +1,28 @@
+
+function sendMessage() {
+    // Get form values
+    const fullName = document.getElementById("fullName").value.trim();
+    const subject = document.getElementById("subject").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    // Check if all fields are filled
+    if (!fullName || !subject || !message) {
+      alert("Fill all the Blanks");
+      return;
+    }
+
+    // Format the WhatsApp message
+    const whatsappMessage = `الأسم و الشهره: ${fullName}\nالموضوع: ${subject}\nالرساله: ${message}`;
+
+
+    const phoneNumbers = document.getElementById("sendmessageBtn");
+    const phoneNumber = phoneNumbers.getAttribute("number")
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    // Open WhatsApp URL in a new tab
+    window.open(whatsappURL, "_blank");
+  }
+  
 // Smooth Scrolling for Anchor Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -119,25 +144,3 @@ filterBtns.forEach(btn => {
     });
 });
 
-
-// // Add slide animation classes when slide changes
-// document.addEventListener('DOMContentLoaded', function() {
-//     var heroCarousel = document.getElementById('heroCarousel');
-    
-//     heroCarousel.addEventListener('slide.bs.carousel', function (event) {
-//         var activeSlide = event.relatedTarget;
-//         var contentElements = activeSlide.querySelectorAll('.carousel-content > *');
-        
-//         // Add animation classes to each element
-//         contentElements.forEach(function(element, index) {
-//             element.classList.remove('animate__animated', 'animate__fadeInDown', 'animate__fadeInUp');
-//             void element.offsetWidth; // Trigger reflow
-            
-//             if(element.tagName === 'H2') {
-//                 element.classList.add('animate__animated', 'animate__fadeInDown');
-//             } else {
-//                 element.classList.add('animate__animated', 'animate__fadeInUp');
-//             }
-//         });
-//     });
-// });

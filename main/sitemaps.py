@@ -1,5 +1,6 @@
 # main/sitemaps.py
 from django.contrib.sitemaps import Sitemap
+from django.urls import reverse
 from .models import Project, Person
 
 class ProjectSitemap(Sitemap):
@@ -18,3 +19,13 @@ class PersonSitemap(Sitemap):
 
     def items(self):
         return Person.objects.all() 
+
+class StaticViewSitemap(Sitemap):
+    changefreq = "weekly"
+    priority = 1.0
+
+    def items(self):
+        return ['main']  
+
+    def location(self, item):
+        return reverse(item)
